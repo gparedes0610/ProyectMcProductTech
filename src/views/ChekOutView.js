@@ -182,7 +182,7 @@ function ChekOutView() {
                   )}
                 </div>
 
-                <div>
+                <div className="mx-4">
                   <label className="form-label">Año</label>
                   <input
                     type="number"
