@@ -54,8 +54,8 @@ function ChekOutView() {
   };
 
   return (
-    <div className="container mt-3">
-      <div className="row">
+    <div className="container mt-3 ">
+      <div className="row py-5">
         <div className="col-12 col-md-12 col-lg-6 my-3">
           <h3 style={{ color: "010D82" }}>Estas Comprando estos productos</h3>
           {carrito <= 0 ? (
@@ -96,20 +96,21 @@ function ChekOutView() {
           <h3 style={{ color: "010D82" }} className="mt-4">
             Recoge tu producto aqui:
           </h3>
-
-          <MapContainer
-            center={coordenadas}
-            zoom={15}
-            style={{ height: "400px" }}
-          >
-            {/* Tile Layer es la fuente de datos para leaflet */}
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <AnadirMarcador />
-            <Marker position={coordenadas} />
-          </MapContainer>
+          <div>
+            <MapContainer
+              center={coordenadas}
+              zoom={15}
+              style={{ height: "400px" }}
+            >
+              {/* Tile Layer es la fuente de datos para leaflet */}
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <AnadirMarcador />
+              <Marker position={coordenadas} />
+            </MapContainer>
+          </div>
         </div>
         <div className="col-12 col-md-12 col-lg-6 my-3">
           <h3 style={{ color: "010D82" }}>Ingrese sus datos por favor:</h3>
@@ -207,7 +208,11 @@ function ChekOutView() {
                 </div>
               </div>
             </div>
-            <button type="submit" className="btn btn-success btn-lg">
+            <button
+              type="submit"
+              className="btn btn-success btn-lg"
+              disabled={carrito.length <= 0}
+            >
               Pagar Ahora
             </button>
           </form>

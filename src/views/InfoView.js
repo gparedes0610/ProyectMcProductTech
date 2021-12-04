@@ -4,13 +4,19 @@ import ImgGamer from "../assets/gamer.svg";
 export default function InfoView() {
   return (
     <div style={{ position: "relative", background: "#f8fbfe" }}>
+      {/*  IMAGEN WAVE */}
       <img
         src={WaveImg}
         alt=""
         style={{ position: "absolute", width: "100%" }}
       />
-      <div className="container" style={{ zIndex: 100 }}>
-        <div className="row">
+
+      {/*   CONTENIDO */}
+      <div className="container vh-100 pt-4" style={{ zIndex: 100 }}>
+        <div
+          className="row d-flex align-items-center"
+          style={{ height: "100%" }}
+        >
           <div
             className="col-12 col-md-12 col-lg-6 d-flex flex-column justify-content-center pb-4"
             style={{ zIndex: 100 }}
@@ -47,12 +53,12 @@ export default function InfoView() {
               </button>
             </div>
           </div>
-
+          {/*      IMAGEN */}
           <div
             className="col-12 col-md-12 col-lg-6 fw-bolder"
             style={{ zIndex: 100 }}
           >
-            <img src={ImgGamer} alt="" />
+            <img src={ImgGamer} alt="" className="w-75" />
           </div>
         </div>
       </div>

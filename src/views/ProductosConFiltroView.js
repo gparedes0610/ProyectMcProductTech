@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { obtenerCategorias } from "../service/categoriaService";
-import { ListGroup, Button } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router";
+import { ListGroup, Button, Spinner } from "react-bootstrap";
+import { useParams } from "react-router";
+
 import {
   obtenerProductosPorPagina,
   obtenerProductos,
@@ -67,6 +68,24 @@ function ProductosConFiltroView() {
     setProductos(productosFiltrados);
     //setTodosLosProductos(productosFiltrados);
   };
+  const [botonActivo, setBotonActivo] = useState(true);
+
+  const cambiarEstado = () => {
+    setBotonActivo(false);
+
+    setTimeout(() => {
+      setPagina(pagina + 1);
+      setBotonActivo(true);
+    }, 3000);
+  };
+  const cambiarEstadoAtras = () => {
+    setBotonActivo(false);
+
+    setTimeout(() => {
+      setPagina(pagina - 1);
+      setBotonActivo(true);
+    }, 3000);
+  };
 
   useEffect(() => {
     getData();
@@ -105,6 +124,7 @@ function ProductosConFiltroView() {
           </div>
           <div className="col-12 col-md-8 col-lg-8">
             <h3 className="text-center">Productos</h3>
+
             {productos.map((producto, i) => (
               <ProductCard producto={producto} key={i} />
             ))}
@@ -112,8 +132,9 @@ function ProductosConFiltroView() {
               {pagina === 1 ? null : (
                 <button
                   className="btn btn-primary mx-2"
+                  disabled={!botonActivo}
                   onClick={() => {
-                    setPagina(pagina - 1);
+                    cambiarEstadoAtras();
                   }}
                 >
                   Atras
@@ -123,12 +144,17 @@ function ProductosConFiltroView() {
                 <button
                   className="btn btn-primary"
                   onClick={() => {
-                    setPagina(pagina + 1);
+                    cambiarEstado();
                   }}
+                  disabled={!botonActivo}
                 >
                   Siguiente
                 </button>
               )}
+              {/* 
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner> */}
             </div>
           </div>
         </div>

@@ -3,7 +3,11 @@ import { Card, Button } from "react-bootstrap";
 import { obtenerCategorias } from "../service/categoriaService";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router";
+
 function CategoriasView() {
+  const navigate = useNavigate();
+
   const [categorias, setCategorias] = useState([]);
 
   const getCategorias = async () => {
@@ -19,13 +23,15 @@ function CategoriasView() {
     getCategorias();
   }, []);
 
+  const irAProductos = () => {
+    navigate("/productosfiltros");
+  };
+
   return (
-    <div
-      className="container-fluid pt-5 pb-5"
-      style={{ background: "#0B0D17" }}
-    >
-      <div className="container">
-        <div className="row">
+    <div className="container-fluid" style={{ background: "#0B0D17" }}>
+      {/*   CONTENIDO */}
+      <div className="container py-4">
+        <div className="row d-flex align-items-center">
           {categorias.map((categoria, i) => (
             <div className="col-12 col-md-4 col-lg-4 mb-3" key={i}>
               <Card className="bg-dark text-white">
@@ -54,13 +60,16 @@ function CategoriasView() {
               </Card>
             </div>
           ))}
-        </div>
-        <div className="row text-center">
-          <div className="col-12">
-            <Button variant="outline-light text-uppercase">
-              Ver Todos los productos
-              <FontAwesomeIcon icon={faArrowRight} className="mx-2" />
-            </Button>
+          <div className="row">
+            <div className="col-12">
+              <Button
+                variant="outline-light text-uppercase"
+                onClick={irAProductos}
+              >
+                Ver Todos los productos
+                <FontAwesomeIcon icon={faArrowRight} className="mx-2" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

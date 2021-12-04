@@ -5,6 +5,7 @@ import { Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { CarritoContext } from "../context/carritoContext";
+import ReactImageMagnify from "react-image-magnify";
 
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/authContext";
@@ -81,7 +82,21 @@ function ProductoDetalleView() {
           <Card.Body>
             <div className="row">
               <div className="col-12 col-md-6 d-flex justify-content-center">
-                <Card.Img variant="top w-75 img-fluid" src={producto.imagen} />
+                {/* <Card.Img variant="top w-75 img-fluid" src={producto.imagen} /> */}
+                <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      alt: producto.nombre,
+                      isFluidWidth: true,
+                      src: producto.imagen,
+                    },
+                    largeImage: {
+                      src: producto.imagen,
+                      width: 1600,
+                      height: 1200,
+                    },
+                  }}
+                />
               </div>
               <div className="col-12 col-md-6">
                 <div>

@@ -114,11 +114,11 @@ function Navbar() {
                     Checkout
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link className="nav-link" to="/">
                     Ver tus compras
                   </Link>
-                </li>
+                </li> */}
               </>
             ) : null}
           </ul>
