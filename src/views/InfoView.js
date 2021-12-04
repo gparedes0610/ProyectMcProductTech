@@ -62,14 +62,14 @@ export default function InfoView() {
           {/*      IMAGEN */}
           <motion.div
             className="col-12 col-md-12 col-lg-6 fw-bolder"
-            style={{ zIndex: 100 }}
+            style={{ zIndex: 100, margin: "1px solid red" }}
             initial={{ y: "50vw" }}
             animate={{
               y: "0",
               transition: { duration: 0.8, ease: "easeInOut" },
             }}
           >
-            <img src={ImgGamer} alt="" className="w-75" />
+            <img src={ImgGamer} alt="" className="w-75 mx-5" />
           </motion.div>
         </div>
       </div>
