@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion/dist/es/index";
 function CrearCuentaView() {
   const {
     register,
@@ -17,9 +18,14 @@ function CrearCuentaView() {
       <p className="h2 text-uppercase text-center fw-bold my-3">CREAR CUENTA</p>
       <div className="container-fluid" style={{ marginBottom: "180px" }}>
         <div className="row">
-          <div
+          <motion.div
             className="col-12 col-md-6 col-lg-6"
             style={{ margin: "0 auto" }}
+            initial={{ x: "-50vw" }}
+            animate={{
+              x: "0",
+              transition: { duration: 1, ease: "easeInOut" },
+            }}
           >
             <Form className="pt-3 " onSubmit={handleSubmit(recibirSubmit)}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -86,7 +92,7 @@ function CrearCuentaView() {
                 </Link>
               </div>
             </Form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

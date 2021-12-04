@@ -4,6 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import LoginImg from "../assets/login.svg";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion/dist/es/index";
 function LoginView() {
   const { signIn } = useContext(AuthContext);
 
@@ -23,9 +24,16 @@ function LoginView() {
         Inicio de Sesión
       </h2>
       <div className="row">
-        <div className="col-12 col-md-6">
+        <motion.div
+          className="col-12 col-md-6"
+          initial={{ x: "-50vw" }}
+          animate={{
+            x: "0",
+            transition: { duration: 1, ease: "easeInOut" },
+          }}
+        >
           <img src={LoginImg} alt="" />
-        </div>
+        </motion.div>
         <div className="col-12 col-md-6 ">
           <Form className="pt-3" onSubmit={handleSubmit(recibirSubmit)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
