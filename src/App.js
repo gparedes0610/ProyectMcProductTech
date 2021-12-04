@@ -13,7 +13,7 @@ import ChekOutView from "./views/ChekOutView";
 import PrivateRoute from "./components/PrivateRoute";
 import FooterView from "./views/FooterView";
 import ConocenosView from "./views/ConocenosView";
-
+import NotFound from "./components/NotFound";
 import { AuthContextProvider } from "./context/authContext";
 import { CarritoContextProvider } from "./context/carritoContext";
 
@@ -24,6 +24,7 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
+            <Route path="*" element={<NotFound />} />
             <Route path="/" element={<HomeView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/crearcuenta" element={<CrearCuentaView />} />
