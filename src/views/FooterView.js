@@ -2,13 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion/dist/es/index";
 function FooterView() {
   return (
     <footer
       className="bg-dark text-light pt-5 pb-3"
       style={{ position: "relative", width: "100%", bottom: "0" }}
     >
-      <div className="container">
+      <motion.div
+        className="container"
+        initial={{ y: "200vw" }}
+        animate={{
+          y: "0",
+          transition: { duration: 0.8, ease: "easeInOut" },
+        }}
+      >
         <div className="row">
           <div className="col-12 col-md-6 col-lg-3 pb-2">
             <Link
@@ -58,7 +66,7 @@ function FooterView() {
             </d>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

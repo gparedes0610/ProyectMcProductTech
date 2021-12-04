@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { obtenerCategorias } from "../service/categoriaService";
 import { ListGroup, Button, Spinner } from "react-bootstrap";
+import { motion } from "framer-motion/dist/es/index";
 import { useParams } from "react-router";
-
+import Slider from "@mui/material/Slider";
 import {
   obtenerProductosPorPagina,
   obtenerProductos,
@@ -24,6 +25,8 @@ function ProductosConFiltroView() {
   //console.log("busqueda", busqueda);
   const [productosBuscados, setProductosBuscados] = useState([]);
   //console.log("productos buscados", productosBuscados);
+
+  const [precio, setPrecio] = useState([0, 500]);
 
   const getData = async () => {
     try {
@@ -87,6 +90,17 @@ function ProductosConFiltroView() {
     }, 3000);
   };
 
+  const manejarFiltroPrecio = (evento, nuevoRango) => {
+    setPrecio(nuevoRango);
+    // filtro el arreglo por los que tengan precio
+    //mayor o igual que el menor valor del rango del SLider
+    //meno o igual que el mayor valor del rango del SLider
+    const productosPorPrecio = todosLosProductos.filter((prod) => {
+      return prod.precio >= precio[0] && prod.precio <= precio[1];
+    });
+    setProductos(productosPorPrecio);
+  };
+
   useEffect(() => {
     getData();
   }, [pagina]);
@@ -96,8 +110,23 @@ function ProductosConFiltroView() {
 
       <div className="container jumbotron ">
         <div className="row pt-5">
-          <div className="col-12 col-md-4 col-lg-4">
-            <h3>Categorias</h3>
+          <motion.div
+            className="col-12 col-md-4 col-lg-4"
+            initial={{ x: "-50vw" }}
+            animate={{
+              x: "0",
+              transition: { duration: 0.8, ease: "easeInOut" },
+            }}
+          >
+            <motion.h3
+              initial={{ y: "200vw" }}
+              animate={{
+                y: "0",
+                transition: { duration: 0.8, ease: "easeInOut" },
+              }}
+            >
+              Categorias
+            </motion.h3>
             <ListGroup as="ul">
               <Button
                 variant="info my-1 text-uppercase fw-bolder"
@@ -121,7 +150,26 @@ function ProductosConFiltroView() {
                 </Button>
               ))}
             </ListGroup>
-          </div>
+            <Slider
+              value={precio}
+              onChange={manejarFiltroPrecio}
+              valueLabelDisplay="auto"
+              min={1}
+              max={500}
+            />
+            <ul className="list-group">
+              <li className="d-flex justify-content-between align-items-center">
+                <div>
+                  <p className="bg-success text-light rounded-pill px-3 ">
+                    S/.0
+                  </p>
+                </div>
+                <div className="bg-success text-light rounded-pill px-3 ">
+                  <p>S/.500</p>
+                </div>
+              </li>
+            </ul>
+          </motion.div>
           <div className="col-12 col-md-8 col-lg-8">
             <h3 className="text-center">Productos</h3>
 

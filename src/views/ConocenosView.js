@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion/dist/es/index";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 
 function ConocenosView() {
@@ -26,7 +27,14 @@ function ConocenosView() {
   return (
     <div className="container">
       <div className="row pt-5 pb-3">
-        <div className="col-12-col-md-12 col-lg-6">
+        <motion.div
+          className="col-12-col-md-12 col-lg-6"
+          initial={{ x: "-50vw" }}
+          animate={{
+            x: "0",
+            transition: { duration: 0.8, ease: "easeInOut" },
+          }}
+        >
           <h2 className="text-info">Conocemos aqui:</h2>
           <p className="lead">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
@@ -34,9 +42,16 @@ function ConocenosView() {
             in placeat? Blanditiis magnam quos vero! Architecto et doloremque
             numquam minima? Facilis voluptatum neque, accusamus accusantium sed
           </p>
-        </div>
+        </motion.div>
 
-        <div className="col-12-col-md-12 col-lg-6">
+        <motion.div
+          className="col-12-col-md-12 col-lg-6"
+          initial={{ y: "200vw" }}
+          animate={{
+            y: "0",
+            transition: { duration: 0.8, ease: "easeInOut" },
+          }}
+        >
           <h2>Dejanos tu mensaje , te responderemos en breve</h2>
           <form>
             <div className="mb-2">
@@ -68,9 +83,16 @@ function ConocenosView() {
               <button className="btn btn-primary">Enviar</button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
-      <div className="row">
+      <motion.div
+        className="row"
+        initial={{ y: "200vw" }}
+        animate={{
+          y: "0",
+          transition: { duration: 1, ease: "easeInOut" },
+        }}
+      >
         <div className="col-12 pb-4">
           <MapContainer
             center={coordenadas}
@@ -86,7 +108,7 @@ function ConocenosView() {
             <Marker position={coordenadas} />
           </MapContainer>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

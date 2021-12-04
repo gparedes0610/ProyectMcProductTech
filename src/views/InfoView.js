@@ -1,6 +1,7 @@
 import React from "react";
 import WaveImg from "../assets/wave.svg";
 import ImgGamer from "../assets/gamer.svg";
+import { motion } from "framer-motion/dist/es/index";
 export default function InfoView() {
   return (
     <div style={{ position: "relative", background: "#f8fbfe" }}>
@@ -17,9 +18,14 @@ export default function InfoView() {
           className="row d-flex align-items-center"
           style={{ height: "100%" }}
         >
-          <div
+          <motion.div
             className="col-12 col-md-12 col-lg-6 d-flex flex-column justify-content-center pb-4"
             style={{ zIndex: 100 }}
+            initial={{ x: "-50vw" }}
+            animate={{
+              x: "0",
+              transition: { duration: 0.8, ease: "easeInOut" },
+            }}
           >
             <h2
               className="fw-bold text-uppercase"
@@ -52,14 +58,19 @@ export default function InfoView() {
                 Conocenos
               </button>
             </div>
-          </div>
+          </motion.div>
           {/*      IMAGEN */}
-          <div
+          <motion.div
             className="col-12 col-md-12 col-lg-6 fw-bolder"
             style={{ zIndex: 100 }}
+            initial={{ y: "50vw" }}
+            animate={{
+              y: "0",
+              transition: { duration: 0.8, ease: "easeInOut" },
+            }}
           >
             <img src={ImgGamer} alt="" className="w-75" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
